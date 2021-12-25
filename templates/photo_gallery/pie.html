@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Display value on pie-chart</title>
+	<style type="text/css">
+		.pie-chart{
+			width:140px;
+			height:140px;
+			border-radius: 50%;
+			float : left;
+		}
+		.box{
+			width:12px;
+			height:12px;
+		}
+		.green{
+			background:green;
+		}
+		.red{
+			background:red;
+		}
+	</style>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body class="m-2">
+	<div class="pie-chart" title="Gallery data">
+	</div>
+	<div class="p-1" >
+		<ul class="list-group list-group-flush">
+	  <li class="list-group-item"><div class="box green"></div> percent1 {{data.perc1}}%  </li>
+	  <li class="list-group-item"><div class="box red"></div> percent1 {{data.perc2}}% </li>
+			<li class="list-group-item"></li>
+	  </ul>
+
+</ul>
+	</div>
+	<div class="card address" style="clear:both">
+		<form action="" method="post" >
+			{% csrf_token %}
+			<select name="test" >
+				{%for i in value%}
+					<option value="{{i.id}}">{{i.name}}</option>
+				{%endfor%}
+			</select>
+			<input type="submit" value="Get">
+		</form>
+	</div>
+</body>
+		<script type="text/javascript">
+			var pie = document.getElementsByClassName('pie-chart')[0];
+			var p1 = {{data.perc1}};
+			var p2 = {{data.perc2}};
+			console.log(p1);
+			console.log(p2);
+			if(p1>p2){
+				pie.style.background = 'conic-gradient(green 0% {{ data.perc1 }}%,red {{ data.perc1 }}% 100%)';
+			}else{
+				pie.style.background = 'conic-gradient(red 0% {{ data.perc2 }}%,green {{ data.perc2 }}% 100%)';
+			}
+		</script>
+</html>

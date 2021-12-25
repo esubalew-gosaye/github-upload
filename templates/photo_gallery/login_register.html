@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+<body>
+<div class="row m-5">
+  <div class="col-sm-6 register" style="margin: auto;display: none;">
+    <div class="card">
+      <div class="card-body">
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+			    <label for="">Your name</label>
+			    <input type="name" class="form-control" name="name" required >
+			  </div>
+			  <div class="form-group">
+			    <label for="">Email address</label>
+			    <input type="email" class="form-control" name="email" required>
+			  </div>
+			  <div class="form-group">
+			    <label for="">Password</label>
+			    <input type="password" class="form-control" name="password" required>
+			  </div>
+			  <button  type="submit" class="btn btn-primary">Submit</button>
+			  <span style="margin-left: 30px;font-family: itallic">I am already a <a style="color: #007bff;cursor: pointer;" onclick="swap(false)"> user</a></span>
+			</form>
+		</div>
+	  </div>
+   </div>
+
+   <div class="col-sm-6 login" style="margin: auto;">
+    <div class="card">
+      <div class="card-body">
+		  {% if messages %}
+				 {% for message in messages %}
+					  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+		  				<h6 class="alert alert-warning alert-sm">
+				 			{{message}}
+			   			</h6>
+				 	  {% endif %}
+				 {% endfor %}
+          {% endif %}
+			<form action="" method="post">
+				{%csrf_token%}
+			  <div class="form-group">
+			    <label for="">Email address</label>
+			    <input type="email" class="form-control" name="email" required>
+			  </div>
+			  <div class="form-group">
+			    <label for="">Password</label>
+			    <input type="password" class="form-control" name="password" required>
+			  </div>
+			  <button  type="submit" class="btn btn-primary">Login</button>
+			  <span style="margin-left: 30px;font-family: itallic">I am not a <a style="color: #007bff;cursor: pointer;" onclick="swap(true)"> user</a></span>
+			</form>
+		</div>
+	  </div>
+   </div>
+
+</div>
+<script type='text/javascript'>
+	function swap(value){
+		var register = document.getElementsByClassName('register')[0];
+		var login = document.getElementsByClassName('login')[0];
+		if (value) {
+			login.style.display = 'none';
+			register.style.display = 'block';
+		}else{
+			register.style.display = 'none';
+			login.style.display = 'block';
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>api_try example</title>
+
+{% load static %}
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" >
+  <link href="{% static 'css/all.min.css'%}" rel="stylesheet" >
+</head>
+<body>
+<div>
+
+<div class="card m-5" style="width: 18rem;">
+  <div class="card-header">
+    Featured
+  </div>
+  <ul class="m-3" class="list-group list-group-flush">
+
+      <li class="list-group-item">{{datum.Country}}</li>
+      <i class="fab fa-github-square fa-5x"></i>
+      <i class="fas fa-users"></i>
+      <i class="text-info fa fa-thumbs-down fa-2x"> Like</i>
+      <li class="list-group-item">No item</li>
+
+
+  </ul>
+
+</div>
+
+</body>
+</html>
